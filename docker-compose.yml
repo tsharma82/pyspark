@@ -1,0 +1,31 @@
+version: '3'
+services:
+  master:
+    image: "tsharma82/pyspark:1.1"
+    #build: .
+    hostname: master
+    environment:
+      - MASTER=spark://master:7077
+      - JVM_OPTS=-Xms2048M -Xmx4096M
+    entrypoint: bash -i -c "service ssh restart && spark-class org.apache.spark.deploy.master.Master -h master"
+    ports:
+    - "4040:4040" # driver UI
+    - "8080:8080" # master UI
+    - "7080:7080" # Jupyter Notebook UI
+    volumes:
+    - .:/mnt/sparkdl
+    - ~/.ivy2:/root/.ivy2
+    - C:/Datasets/EuroSAT/:/mnt/eurosat
+  worker:
+    image: "tsharma82/pyspark:1.1"
+    #build: .
+    environment:
+      - JVM_OPTS=-Xms2048M -Xmx4096M
+    entrypoint: bash -i -c "service ssh restart && spark-class org.apache.spark.deploy.worker.Worker spark://master:7077"
+    ports:
+    - "8083:8081" # worker UI
+    links:
+    - master
+    volumes:
+    - .:/mnt/sparkdl
+    - C:/Datasets/EuroSAT/:/mnt/eurosat
