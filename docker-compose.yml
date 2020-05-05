@@ -15,7 +15,7 @@ services:
     volumes:
     - .:/mnt/sparkdl
     - ~/.ivy2:/root/.ivy2
-    - C:/Datasets/EuroSAT/:/mnt/eurosat
+    
   worker:
     image: "tsharma82/pyspark:1.1"
     #build: .
@@ -28,4 +28,4 @@ services:
     - master
     volumes:
     - .:/mnt/sparkdl
-    - C:/Datasets/EuroSAT/:/mnt/eurosat
+    
