@@ -1,9 +1,9 @@
 # pyspark
 The project to connect to docker hub image which contains following conda environment: 
 
-# packages in environment at /opt/conda/envs/sparkdl:
-#
-# Name                    Version                   Build  Channel
+## packages in environment at /opt/conda/envs/sparkdl:
+
+### Name                    Version                   Build  Channel
 _libgcc_mutex             0.1                        main
 _tflow_select             2.3.0                       mkl
 absl-py                   0.9.0                    py36_0
